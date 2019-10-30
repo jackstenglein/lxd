@@ -442,7 +442,7 @@ func Join(state *state.State, gateway *Gateway, cert *shared.CertInfo, name stri
 		}
 
 		// Update our role list if needed.
-		if id != "" {
+		if id != "" && len(raftNodes) != 2 {
 			err = tx.NodeAddRole(node.ID, db.ClusterRoleDatabase)
 			if err != nil {
 				return errors.Wrapf(err, "Failed to add database role for the node")
